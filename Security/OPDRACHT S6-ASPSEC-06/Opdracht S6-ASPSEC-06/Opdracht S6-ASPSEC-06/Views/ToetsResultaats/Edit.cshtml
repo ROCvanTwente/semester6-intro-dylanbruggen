@@ -1,0 +1,49 @@
+﻿@model Opdracht_S6_ASPSEC_06.Models.ToetsResultaat
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>ToetsResultaat</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ResultaatId" />
+            <div class="form-group">
+                <label asp-for="StudentId" class="control-label"></label>
+                <select asp-for="StudentId" class="form-control" asp-items="ViewBag.StudentId"></select>
+                <span asp-validation-for="StudentId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VakId" class="control-label"></label>
+                <select asp-for="VakId" class="form-control" asp-items="ViewBag.VakId"></select>
+                <span asp-validation-for="VakId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cijfer" class="control-label"></label>
+                <input asp-for="Cijfer" class="form-control" />
+                <span asp-validation-for="Cijfer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Datum" class="control-label"></label>
+                <input asp-for="Datum" class="form-control" />
+                <span asp-validation-for="Datum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

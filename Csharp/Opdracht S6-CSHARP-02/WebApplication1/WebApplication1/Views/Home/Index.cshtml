@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model List<WebApplication1.Models.IVehicle>
+
+<h2>Voertuigen</h2>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Type</th>
+            <th>Kleur</th>
+            <th>Wielen</th>
+            <th>Snelheid</th>
+            <th>Acties</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vehicle in Model)
+        {
+            <tr>
+                <td>@vehicle.GetType().Name</td>
+                <td>@vehicle.Color</td>
+                <td>@vehicle.Wheels</td>
+                <td>@vehicle.DisplaySpeed()</td>
+                <td>
+                    <form asp-action="IncreaseSpeed" method="post">
+                        <input type="hidden" name="vehicleType" value="@vehicle.GetType().Name" />
+                        <button type="submit" class="btn btn-success">+ Snelheid</button>
+                    </form>
+                    <form asp-action="DecreaseSpeed" method="post">
+                        <input type="hidden" name="vehicleType" value="@vehicle.GetType().Name" />
+                        <button type="submit" class="btn btn-danger">- Snelheid</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
